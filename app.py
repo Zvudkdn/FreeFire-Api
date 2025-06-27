@@ -5,6 +5,7 @@ from cachetools import TTLCache
 import lib2
 import json
 import asyncio
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -54,5 +55,7 @@ def get_account_info():
     return formatted_json, 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 
-if __name__ == '__main__':
-    app.run(port=3000, host='0.0.0.0', debug=True)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))  # Render gives dynamic port
+    app.run(host="0.0.0.0", port=port)
